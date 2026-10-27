@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dalla Porta in Pista · Corsi di guida in pista e noleggio moto</title>
+<meta name="description" content="Corsi di guida in pista con Lorenzo Dalla Porta, campione del mondo Moto3 2019. Corsi di gruppo e individuali, noleggio moto e attrezzatura su circuiti in tutta Italia.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --bg-2: #111111;
+  --card: #141414;
+  --fg: #f5f5f5;
+  --muted: #a6a6a6;
+  --line: #262626;
+  --lime: #ddff00;
+  --lime-ink: #080808;
+  --blue: #0080ff;
+  --font-title: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Roboto", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { max-width: 1140px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-title); font-weight: 400; letter-spacing: .02em; line-height: 1; margin: 0; }
+h2 { font-size: clamp(2.4rem, 6vw, 4rem); text-transform: uppercase; }
+h2 .hl { color: var(--lime); }
+.eyebrow { font-family: var(--font-title); color: var(--lime); font-size: 1.25rem; letter-spacing: .08em; text-transform: uppercase; }
+section { padding: 88px 0; border-top: 1px solid var(--line); }
+.lead { color: var(--muted); max-width: 60ch; }
+
+/* Header */
+.top {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(8, 8, 8, .92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { height: 46px; width: 46px; border-radius: 6px; }
+.brand span { font-family: var(--font-title); font-size: 1.5rem; letter-spacing: .04em; }
+.brand span b { color: var(--lime); font-weight: 400; }
+.nav { display: flex; gap: 22px; align-items: center; }
+.nav a { text-decoration: none; font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.nav a:hover, .nav a:focus-visible { color: var(--fg); }
+.btn {
+  display: inline-block; text-decoration: none; font-family: var(--font-title);
+  font-size: 1.25rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 4px; border: 2px solid var(--lime);
+  transition: background .2s, color .2s, transform .2s;
+}
+.btn-primary { background: var(--lime); color: var(--lime-ink); }
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-ghost { color: var(--fg); border-color: var(--fg); background: transparent; }
+.btn-ghost:hover { background: var(--fg); color: var(--bg); }
+.menu-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--fg); padding: 6px 12px; font-family: var(--font-title); font-size: 1.1rem; border-radius: 4px; }
+
+/* Hero */
+.hero { position: relative; min-height: min(92vh, 780px); display: flex; align-items: flex-end; border-top: 0; padding: 0; overflow: hidden; }
+.hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,8,.2) 0%, rgba(8,8,8,.55) 55%, var(--bg) 100%); }
+.hero .wrap { position: relative; z-index: 1; padding-bottom: 72px; }
+.hero h1 { font-size: clamp(3.6rem, 11vw, 8.5rem); text-transform: uppercase; max-width: 12ch; }
+.hero h1 .hl { color: var(--lime); display: block; }
+.hero p { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 52ch; color: #e6e6e6; margin: 22px 0 32px; }
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* Stats strip */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+.stats div { padding: 28px 16px; border-right: 1px solid var(--line); text-align: center; }
+.stats div:last-child { border-right: 0; }
+.stats strong { display: block; font-family: var(--font-title); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--lime); line-height: 1; }
+.stats span { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+/* Corsi */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+.card.featured { border-color: var(--lime); }
+.card h3 { font-size: 2rem; text-transform: uppercase; margin-bottom: 10px; }
+.card p { color: var(--muted); margin: 0 0 20px; }
+.card .price-line { font-family: var(--font-title); font-size: 1.6rem; color: var(--fg); }
+.card .price-line small { font-family: var(--font-body); font-size: .85rem; color: var(--muted); }
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+.features article { border-top: 2px solid var(--lime); padding-top: 16px; }
+.features h4 { font-family: var(--font-title); font-weight: 400; font-size: 1.5rem; margin: 0 0 6px; text-transform: uppercase; letter-spacing: .02em; }
+.features p { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* Circuiti */
+.circuits { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+.circuit { background: var(--card); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+.circuit img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.circuit .body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.circuit h3 { font-size: 1.8rem; text-transform: uppercase; }
+.circuit .meta { color: var(--muted); font-size: .9rem; }
+.prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: auto; }
+.prices div { background: var(--bg-2); border-radius: 4px; padding: 10px 8px; text-align: center; }
+.prices strong { display: block; font-family: var(--font-title); font-weight: 400; font-size: 1.5rem; color: var(--lime); line-height: 1.1; }
+.prices span { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+
+/* Noleggio */
+.table-wrap { overflow-x: auto; margin-top: 40px; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); font-size: .95rem; }
+th { font-family: var(--font-title); font-weight: 400; font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); background: var(--bg-2); }
+td.num, th.num { text-align: right; white-space: nowrap; }
+td.num { color: var(--lime); font-weight: 700; }
+td small { display: block; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+.equip { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 20px; }
+.equip div { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; justify-content: space-between; align-items: baseline; }
+.equip strong { font-family: var(--font-title); font-weight: 400; font-size: 1.3rem; text-transform: uppercase; }
+.equip span { color: var(--lime); font-weight: 700; }
+.note { color: var(--muted); font-size: .9rem; margin-top: 16px; }
+
+/* Chi siamo */
+.about { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+.about img.portrait { border-radius: 8px; border: 1px solid var(--line); width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 60% 20%; }
+.about p { color: var(--muted); }
+.about .quote { font-family: var(--font-title); font-size: 2rem; text-transform: uppercase; line-height: 1.1; color: var(--fg); border-left: 4px solid var(--lime); padding-left: 18px; margin: 24px 0; }
+
+/* Contatti */
+.contact { background: var(--bg-2); text-align: center; }
+.contact h2 { margin-bottom: 16px; }
+.contact p { color: var(--muted); max-width: 52ch; margin: 0 auto 28px; }
+.contact .links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* Footer */
+footer { border-top: 1px solid var(--line); padding: 36px 0 48px; color: var(--muted); font-size: .85rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+footer a { color: var(--fg); text-decoration: none; }
+footer a:hover { color: var(--lime); }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .features { grid-template-columns: 1fr 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .about img.portrait { max-width: 420px; }
+}
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); flex-direction: column; align-items: flex-start; padding: 16px; border-bottom: 1px solid var(--line); }
+  .nav.open { display: flex; }
+  .nav a { font-size: 1rem; }
+  .menu-toggle { display: block; }
+  .top .wrap { position: relative; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats div:nth-child(2) { border-right: 0; }
+  .stats div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .features { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .brand span { font-size: 1.15rem; }
+  .btn { font-size: 1.1rem; }
+  .cta-row .btn { width: 100%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Dalla Porta in Pista, home">
+      <img src="assets/logo.png" alt="Logo Dalla Porta in Pista">
+      <span>DALLA PORTA <b>IN PISTA</b></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <nav class="nav" id="menu">
+      <a href="#corsi">Corsi</a>
+      <a href="#circuiti">Circuiti</a>
+      <a href="#noleggio">Noleggio</a>
+      <a href="#chi-siamo">Lorenzo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <img class="bg" src="assets/hero-campione.jpg" alt="Lorenzo Dalla Porta festeggia il titolo mondiale Moto3 2019">
+    <div class="wrap">
+      <h1 id="hero-title">Impara con <span class="hl">Lorenzo Dalla Porta</span></h1>
+      <p>Il campione del mondo ti guida nella tua esperienza in pista. Corsi professionali e noleggio moto su circuiti d'eccellenza in tutta Italia.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#corsi">Prenota il tuo corso</a>
+        <a class="btn btn-ghost" href="#circuiti">Scopri i circuiti</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numeri -->
+  <div class="stats wrap" role="list">
+    <div role="listitem"><strong>2019</strong><span>Campione del mondo Moto3</span></div>
+    <div role="listitem"><strong>6</strong><span>Vittorie nella stagione del titolo</span></div>
+    <div role="listitem"><strong>15</strong><span>Podi nella stagione del titolo</span></div>
+    <div role="listitem"><strong>5</strong><span>Circuiti in tutta Italia</span></div>
+  </div>
+
+  <!-- Corsi -->
+  <section id="corsi">
+    <div class="wrap">
+      <p class="eyebrow">Formazione in pista</p>
+      <h2>I nostri <span class="hl">corsi</span></h2>
+      <p class="lead">Corsi professionali su misura per ogni livello, con il campione del mondo Lorenzo Dalla Porta.</p>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Corso Gruppo</h3>
+          <p>Impara le tecniche di guida in pista con istruttori professionisti.</p>
+          <p class="price-line">da €200 <small>al circuito di Pomposa</small></p>
+        </article>
+        <article class="card featured">
+          <h3>Corso Individuale</h3>
+          <p>Corso personalizzato 1-a-1 con Lorenzo Dalla Porta.</p>
+          <p class="price-line">da €470 <small>al circuito di Pomposa</small></p>
+        </article>
+      </div>
+
+      <div class="features">
+        <article><h4>Briefing tecnico</h4><p>Briefing prima e dopo ogni sessione con analisi video, posizione in sella, sguardo e tecnica di guida.</p></article>
+        <article><h4>Per ogni livello</h4><p>Adatti a tutti, dall'amatore principiante al pilota più esperto. Adatti a qualsiasi tipo di moto.</p></article>
+        <article><h4>Flessibilità totale</h4><p>Scegli le giornate dedicate oppure personalizza la tua esperienza scegliendo la data.</p></article>
+        <article><h4>Maggior controllo</h4><p>Con le giuste tecniche avrai più controllo del mezzo e ti stancherai meno, in pista e su strada.</p></article>
+        <article><h4>Setup personalizzato</h4><p>Miglioriamo il posizionamento dei comandi per aumentare il comfort della moto.</p></article>
+        <article><h4>Acconto alla prenotazione</h4><p>Al momento della prenotazione paghi solo un acconto. Il saldo del circuito va effettuato almeno 20 giorni prima.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Circuiti -->
+  <section id="circuiti">
+    <div class="wrap">
+      <p class="eyebrow">Dove si guida</p>
+      <h2>I nostri <span class="hl">circuiti</span></h2>
+      <p class="lead">Cinque piste italiane. Per ognuna: corso di gruppo, corso individuale e solo ingresso pista.</p>
+
+      <div class="circuits">
+        <article class="circuit">
+          <img src="assets/circuiti/mugello.jpg" alt="Autodromo Internazionale del Mugello" loading="lazy">
+          <div class="body">
+            <h3>Mugello</h3>
+            <p class="meta">Toscana · 5,245 km · 15 curve</p>
+            <div class="prices">
+              <div><strong>€400</strong><span>Gruppo</span></div>
+              <div><strong>€1000</strong><span>Individuale</span></div>
+              <div><strong>€350</strong><span>Solo ingresso</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="circuit">
+          <img src="assets/circuiti/misano.jpg" alt="Misano World Circuit Marco Simoncelli" loading="lazy">
+          <div class="body">
+            <h3>Misano</h3>
+            <p class="meta">Emilia-Romagna · 4,226 km · 16 curve</p>
+            <div class="prices">
+              <div><strong>€370</strong><span>Gruppo</span></div>
+              <div><strong>€930</strong><span>Individuale</span></div>
+              <div><strong>€240</strong><span>Solo ingresso</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="circuit">
+          <img src="assets/circuiti/magione.jpg" alt="Autodromo di Magione" loading="lazy">
+          <div class="body">
+            <h3>Magione</h3>
+            <p class="meta">Umbria · 2,507 km · 11 curve</p>
+            <div class="prices">
+              <div><strong>€230</strong><span>Gruppo</span></div>
+              <div><strong>€570</strong><span>Individuale</span></div>
+              <div><strong>€140</strong><span>Solo ingresso</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="circuit">
+          <img src="assets/circuiti/cremona.jpg" alt="Circuito di Cremona" loading="lazy">
+          <div class="body">
+            <h3>Cremona</h3>
+            <p class="meta">Lombardia · 3,018 km · 9 curve</p>
+            <div class="prices">
+              <div><strong>€270</strong><span>Gruppo</span></div>
+              <div><strong>€850</strong><span>Individuale</span></div>
+              <div><strong>€230</strong><span>Solo ingresso</span></div>
+            </div>
+          </div>
+        </article>
+        <article class="circuit">
+          <img src="assets/circuiti/pomposa.jpg" alt="Autodromo di Pomposa" loading="lazy">
+          <div class="body">
+            <h3>Pomposa</h3>
+            <p class="meta">Emilia-Romagna · 1,700 km · 12 curve</p>
+            <div class="prices">
+              <div><strong>€200</strong><span>Gruppo</span></div>
+              <div><strong>€470</strong><span>Individuale</span></div>
+              <div><strong>€60</strong><span>Solo ingresso</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noleggio -->
+  <section id="noleggio">
+    <div class="wrap">
+      <p class="eyebrow">Senza moto propria</p>
+      <h2>Noleggio <span class="hl">moto</span></h2>
+      <p class="lead">Moto preparate per la pista, con sospensioni regolate, freni racing e gomme da pista. Puoi noleggiare anche senza fare un corso: riceverai le nozioni base sulla sicurezza.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Moto</th>
+              <th class="num">Mugello</th>
+              <th class="num">Misano</th>
+              <th class="num">Magione</th>
+              <th class="num">Cremona</th>
+              <th class="num">Pomposa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Yamaha R6 2007<small>Stock, pronta pista: per prime esperienze e per pro</small></td>
+              <td class="num">€600</td><td class="num">€550</td><td class="num">€450</td><td class="num">€500</td><td class="num">€350</td>
+            </tr>
+            <tr>
+              <td>Yamaha R6 SSP 2024<small>Supersport, per piloti esigenti</small></td>
+              <td class="num">€1000</td><td class="num">€900</td><td class="num">€700</td><td class="num">€800</td><td class="num">€500</td>
+            </tr>
+            <tr>
+              <td>BMW S1000RR 2019<small>Superstock: potenza e feeling eccellenti, per esperti</small></td>
+              <td class="num">€700</td><td class="num">€650</td><td class="num">€550</td><td class="num">€600</td><td class="num">€500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Prezzi per giornata di noleggio. Gomme nuove da pista (Dunlop o Pirelli slick) disponibili a costo aggiuntivo. È richiesta una franchigia, restituita a fine giornata o scalata in caso di danni.</p>
+
+      <h3 style="margin-top:48px;font-size:2rem;text-transform:uppercase">Attrezzatura</h3>
+      <div class="equip">
+        <div><strong>Casco</strong><span>€40</span></div>
+        <div><strong>Tuta</strong><span>€50</span></div>
+        <div><strong>Stivali</strong><span>€30</span></div>
+        <div><strong>Guanti</strong><span>€20</span></div>
+        <div><strong>Paraschiena</strong><span>€20</span></div>
+        <div><strong>Airbag</strong><span>€40</span></div>
+        <div><strong>Set completo</strong><span>€185</span></div>
+      </div>
+      <p class="note">Non hai l'abbigliamento tecnico? Lo noleggiamo noi, richiedibile in fase di prenotazione.</p>
+    </div>
+  </section>
+
+  <!-- Chi siamo / Lorenzo -->
+  <section id="chi-siamo">
+    <div class="wrap about">
+      <img class="portrait" src="assets/hero-campione.jpg" alt="Lorenzo Dalla Porta sul podio con il casco da campione del mondo">
+      <div>
+        <p class="eyebrow">Il tuo istruttore</p>
+        <h2>Lorenzo <span class="hl">Dalla Porta</span></h2>
+        <p class="quote">Oggi Lorenzo mette a disposizione la sua esperienza per formare nuovi piloti.</p>
+        <p>Lorenzo Dalla Porta ha conquistato il titolo mondiale Moto3 nel 2019, coronando anni di dedizione e talento nelle corse motociclistiche. Con 6 vittorie e 15 podi nella stagione del titolo, ha dimostrato costanza e velocità ai massimi livelli.</p>
+        <p>Oggi condivide le tecniche e i segreti che lo hanno portato al vertice del motociclismo mondiale, per dare a ogni persona la possibilità di passare una giornata con un campione del mondo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contatti -->
+  <section id="contatti" class="contact">
+    <div class="wrap">
+      <p class="eyebrow">Pronto a scendere in pista?</p>
+      <h2>Prenota la <span class="hl">tua giornata</span></h2>
+      <p>Contattaci per creare un programma su misura per te, oppure prenota direttamente il tuo corso. Ti rispondiamo per email o WhatsApp.</p>
+      <div class="links">
+        <a class="btn btn-primary" href="https://wa.me/393793247414" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:info@dallaportainpista.it">info@dallaportainpista.it</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Dalla Porta In Pista. Tutti i diritti riservati.</span>
+    <span>Attività gestita da 1948 Racing SSD a RL · <a href="https://www.tiktok.com/@dallaportainpista" target="_blank" rel="noopener">TikTok</a></span>
+  </div>
+</footer>
+
+<script>
+  // Menu mobile
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('menu');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
